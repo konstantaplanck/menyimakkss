@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تدريب الاستماع - علماء الإسلام</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #ffd1dc 0%, #e0c3fc 50%, #c3e0fc 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #b4d7ff 0%, #c9b4ff 100%);
+            color: #4a4a4a;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .audio-section {
+            background: #fff5f8;
+            padding: 25px;
+            border-bottom: 3px solid #ffd1dc;
+        }
+
+        .audio-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .audio-box h3 {
+            color: #8b7fb8;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .audio-text {
+            line-height: 2;
+            font-size: 1.15em;
+            color: #333;
+            padding: 15px;
+            background: #fffef9;
+            border-right: 4px solid #c9b4ff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .audio-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #c9b4ff;
+            color: #4a4a4a;
+        }
+
+        .btn-primary:hover {
+            background: #b99ff5;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #b4e7ce;
+            color: #4a4a4a;
+        }
+
+        .btn-secondary:hover {
+            background: #9fd9bb;
+        }
+
+        .quiz-section {
+            padding: 30px;
+        }
+
+        .quiz-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .question-card {
+            background: #fef9ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-right: 5px solid #ffc4e1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .question-number {
+            color: #c9b4ff;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .answer {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #d4e9ff;
+            margin-top: 10px;
+        }
+
+        .answer.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .answer-label {
+            color: #7fb89e;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .answer-text {
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #ffe4f2;
+            color: #8b7fb8;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-item {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        .reading-indicator {
+            background: #fff9e6;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+            color: #8b7fb8;
+        }
+
+        .reading-indicator.active {
+            display: block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .audio-text {
+                font-size: 1em;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎧 Latihan Istima' (Listening)</h1>
+            <p>Ilmuwan Muslim di Era Kejayaan Islam: Matematika, Kedokteran & Teknik</p>
+        </div>
+
+        <div class="audio-section">
+            <div class="audio-box">
+                <h3>📖 Teks Audio</h3>
+                <div class="reading-indicator" id="readingIndicator">
+                    🔊 Sedang membaca teks...
+                </div>
+                <div class="audio-text" id="audioText">
+                    في زمن النَّهضةِ الإسلاميّة، ازدهرت العلومُ ازدهارًا عجيبًا، وبرز علماءٌ عظامٌ في ميادين الحساب والطّبّ والهندسة. فقد قدّم الخوارزميّ أسسَ علمِ الجبر، ووضع ابن سينا موسوعته الطبيّة الّتي ظلّت مرجعًا لقرون، بينما ابتكر بنو موسى طرائق هندسيّة دقيقة سبقت عصرهم. لم تكن جهودهم مجرد نظريات جامدة، بل كانت مشاريع حضاريّة تسعى لرفع مستوى الإنسان، وإقامة مجتمعٍ يقوم على المعرفة والبحث والاكتشاف. وقد تميّز هؤلاء العلماء بروح الاجتهاد وحبّ الحقيقة، ممّا جعل آثارهم باقيةً إلى اليوم، تلهم العقول وتفتح آفاقًا جديدة للباحثين المعاصرين.
+                </div>
+                <div class="audio-controls">
+                    <button class="btn btn-primary" onclick="readText()">🔊 Putar Audio</button>
+                    <button class="btn btn-secondary" onclick="stopReading()">⏹️ Stop</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <div class="stats">
+                <div class="stats-item">📝 Total Soal: <strong>25</strong></div>
+                <div class="stats-item">✅ Jawaban Ditampilkan: <strong id="shownCount">0</strong></div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="btn btn-primary" onclick="showAllQuestions()">Tampilkan Semua Jawaban</button>
+                <button class="btn btn-secondary" onclick="toggleAllAnswers()">Sembunyikan/Tampilkan Jawaban</button>
+                <button class="btn btn-primary" onclick="resetQuiz()">Reset</button>
+            </div>
+
+            <div id="questionsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { category: "A. الفكرة الرئيسة", q: "ما الفكرة الرئيسة في النص؟", a: "ازدهار العلوم في عصر النهضة الإسلامية ودور العلماء في تطوير الحساب والطب والهندسة" },
+            { category: "A. الفكرة الرئيسة", q: "ما الهدف من عرض سير العلماء في هذا المقطع؟", a: "إبراز إسهاماتهم الحضارية وأثرها المستمر في تطوّر المعرفة" },
+            { category: "B. التفاصيل", q: "ماذا قدّم الخوارزميّ في مجال العلوم؟", a: "وضع أسس علم الجبر" },
+            { category: "B. التفاصيل", q: "ما اسم الموسوعة التي اشتهر بها ابن سينا (حسب النص)؟", a: "موسوعته الطبيّة دون تحديد الاسم في النص (كالقانون في الطب)" },
+            { category: "B. التفاصيل", q: "في أيّ مجال أبدع بنو موسى؟", a: "في ابتكار طرائق هندسية دقيقة ومتقدّمة" },
+            { category: "C. السببية", q: "لماذا اعتُبرت جهود العلماء في ذلك العصر مشاريع حضارية؟", a: "لأنها هدفت لرفع مستوى الإنسان وبناء مجتمع يقوم على المعرفة والبحث" },
+            { category: "C. السببية", q: "ما سبب بقاء آثار العلماء إلى اليوم؟", a: "بسبب روح الاجتهاد وحبّ الحقيقة الذي انعكس في أعمالهم" },
+            { category: "D. الاستنتاج", q: "ما الذي يمكن استنتاجه عن نظرة العلماء للعلم؟", a: "كانوا يرون العلم رسالة إنسانية لا مجرد معرفة نظرية" },
+            { category: "D. الاستنتاج", q: "ما دلالة وصف إسهاماتهم بأنها \"تُلهم العقول\"؟", a: "أنها ما زالت مؤثرة في الأجيال اللاحقة وتفتح آفاقًا جديدة للبحث" },
+            { category: "E. الرأي", q: "هل كان الكاتب محايدًا أم معجبًا بجهود العلماء؟ دلّل.", a: "كان معجبًا، لأنه استخدم عبارات مثل \"آثارهم باقية\" و\"تلهم العقول\"" },
+            { category: "E. الرأي", q: "ما رأي المتحدث في النظريات التي قدّموها؟", a: "يرى أنها ليست جامدة بل عملية وموجهة لخدمة الإنسان" },
+            { category: "F. الأسلوب", q: "أيّ أسلوب استخدم النص: وصفي، تاريخي، أم تحفيزي؟", a: "خليط بين الوصفي والتاريخي وبنزعة تحفيزية" },
+            { category: "F. الأسلوب", q: "كيف يُشعر الكاتب المستمع بعظمة العلماء؟", a: "عبر ذكر إنجازاتهم المؤثرة وربطها برقيّ الحضارة" },
+            { category: "G. التنبؤ", q: "إذا استمرت روح الاجتهاد كما عند العلماء المذكورين، ما الذي قد يحدث في عالمنا اليوم؟", a: "ازدهار العلوم وابتكار حلول جديدة للتحديات المعاصرة" },
+            { category: "G. التنبؤ", q: "ما الموضوع الذي قد يتحدّث عنه النصّ بعد هذا المقطع؟", a: "ربما يستعرض عالِمًا آخر أو أثر العلوم الإسلامية على أوروبا" },
+            { category: "H. المقارنة", q: "قارن بين دور الخوارزمي ودور ابن سينا كما ورد في النص.", a: "الخوارزمي خدم الحساب والجبر، وابن سينا خدم العلوم الطبية" },
+            { category: "H. المقارنة", q: "ما الفرق بين منهج العلماء في النظريات ومنهجهم في التطبيق؟", a: "نظرياتهم لم تكن منفصلة عن التطبيق بل كانت عملية وموجهة للفائدة الحضارية" },
+            { category: "I. إعادة البناء", q: "رتّب العلماء الثلاثة حسب مجالاتهم كما وردت في النص.", a: "الخوارزمي → الحساب، ابن سينا → الطب، بنو موسى → الهندسة" },
+            { category: "I. إعادة البناء", q: "اذكر مثالين على إسهامات العلماء في خدمة المجتمع.", a: "تأسيس علم الجبر، ابتكار طرائق هندسية متقدمة" },
+            { category: "J. التقييم", q: "هل ترى أن مساهمات هؤلاء العلماء ما زالت مؤثرة اليوم؟ لماذا؟", a: "نعم، لأنها أسست قواعد علمية تُدرَّس عالميًا حتى العصر الحديث" },
+            { category: "J. التقييم", q: "ما القيمة التي يركّز عليها النص في إبراز سير العلماء؟", a: "قيمة السعي للمعرفة والاجتهاد لخدمة الإنسانية" },
+            { category: "K. الإبداع", q: "لو عشتَ في زمن النهضة الإسلامية، أيّ عالم من المذكورين ستختار لتعمل معه؟ ولماذا؟", a: "ابن سينا، لأنني أفضّل الجمع بين العقل الفلسفي والخبرة العلمية (نموذج)" },
+            { category: "K. الإبداع", q: "اقترح اختراعًا جديدًا يمكن أن يلهمه تراث الخوارزمي أو بني موسى في عصر التكنولوجيا.", a: "تطوير خوارزمية تعليمية ذكية تُبسّط تعلم العربية لغير الناطقين بها (نموذج)" },
+            { category: "K. الإبداع", q: "تخيّل أن الخوارزمي حضر إلى جامعتك اليوم، ما السؤال الأول الذي ستوجّهه إليه؟", a: "كيف يمكن تطوير الجبر ليخدم الذكاء الاصطناعي الحديث؟ (نموذج)" },
+            { category: "K. الإبداع", q: "لو طُلب منك تصميم فيلم وثائقي عن النهضة الإسلامية، ما الفكرة المركزية التي ستبني عليها الفيلم؟", a: "كيف غيّر العلماء المسلمون خريطة العلوم قبل أوروبا بقرون (نموذج)" }
+        ];
+
+        let speechSynth = window.speechSynthesis;
+        let currentUtterance = null;
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            
+            questions.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.innerHTML = `
+                    <span class="category-badge">${item.category}</span>
+                    <div class="question-number">السؤال ${index + 1}</div>
+                    <div class="question-text">${item.q}</div>
+                    <div class="answer" id="answer-${index}" style="display: none;">
+                        <span class="answer-label">✅ الإجابة:</span>
+                        <div class="answer-text">${item.a}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            updateShownCount();
+        }
+
+        function showAllQuestions() {
+            questions.forEach((_, index) => {
+                document.getElementById(`answer-${index}`).style.display = 'block';
+            });
+            updateShownCount();
+        }
+
+        function toggleAllAnswers() {
+            questions.forEach((_, index) => {
+                const answer = document.getElementById(`answer-${index}`);
+                answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+            });
+            updateShownCount();
+        }
+
+        function resetQuiz() {
+            questions.forEach((_, index) => {
+                document.getElementById(`answer-${index}`).style.display = 'none';
+            });
+            updateShownCount();
+        }
+
+        function updateShownCount() {
+            let count = 0;
+            questions.forEach((_, index) => {
+                if (document.getElementById(`answer-${index}`).style.display !== 'none') {
+                    count++;
+                }
+            });
+            document.getElementById('shownCount').textContent = count;
+        }
+
+        function readText() {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+            }
+            
+            const text = document.getElementById('audioText').textContent;
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'ar-SA';
+            currentUtterance.rate = 0.8;
+            currentUtterance.pitch = 1;
+            
+            const indicator = document.getElementById('readingIndicator');
+            indicator.classList.add('active');
+            
+            currentUtterance.onend = () => {
+                indicator.classList.remove('active');
+            };
+            
+            speechSynth.speak(currentUtterance);
+        }
+
+        function stopReading() {
+            if (speechSynth.speaking) {
+                speechSynth.cancel();
+                document.getElementById('readingIndicator').classList.remove('active');
+            }
+        }
+
+        // Initialize
+        renderQuestions();
+    </script>
+</body>
+</html>
